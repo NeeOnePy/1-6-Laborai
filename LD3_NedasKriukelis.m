@@ -12,7 +12,6 @@ legend('sin(t)');
 grid on;
 %% 
 clear
-close all
 
 x  = linspace(-pi, pi, 50);
 y1 = -x.^2 + 9;
@@ -27,7 +26,6 @@ grid on;
 %% 
 
 clear
-close all
 
 vardai = {'Jonas', 'Ona', 'Petras', 'Rūta', 'Tomas', 'Lina'};
 
@@ -58,12 +56,12 @@ grid on;
 %% 
 
 clear
-close all
 
 t  = linspace(0, 1, 500);
-U  = 5*sin(2*pi*3*t) + 1.5*randn(size(t));
-U1 = -2;  U2 = 3;
-Uf = min(max(U, U1), U2);
+U  = 4 + 3*sin(2*pi*3*t) + 0.5*randn(size(t));
+U1 = 5;
+U2 = 3;
+Uf = min(max(U, U2), U1);
 
 violetine = [0.58 0 0.83];
 
@@ -78,10 +76,9 @@ xlabel('Laikas t, s');
 ylabel('Itampa U, V');
 title('Pradinis ir filtruotas signalai', 'Color', violetine, 'FontSize', 14);
 legend([h1 h2 hU1 hU2], {'Pradinis signalas', 'Filtruotas signalas', ...
-    'Riba U_1', 'Riba U_2'}, 'Location', 'best');
+       'Riba U_1', 'Riba U_2'}, 'Location', 'best');
 grid on;
 xlim([t(1) t(end)]);
-ylim([min(U) - 1, max(U) + 1]);
 
 idx = U > U1;
 tv  = t(idx);
@@ -94,13 +91,13 @@ imin = find(Uv == min(Uv));
 imax = find(Uv == max(Uv));
 hmin = plot(tv(imin), Uv(imin), 'ks', 'MarkerFaceColor', 'k', 'MarkerSize', 9);
 hmax = plot(tv(imax), Uv(imax), '^', 'Color', [0 0.6 0], ...
-    'MarkerFaceColor', [0 0.6 0], 'MarkerSize', 9);
+            'MarkerFaceColor', [0 0.6 0], 'MarkerSize', 9);
 
 xlabel('Laikas t, s');
 ylabel('Itampa U, V');
 title('Signalo reiksmes, virsijancios U_1', 'Color', violetine, 'FontSize', 14);
 legend([hs hmin hmax], {'Reiksmes > U_1', 'Minimali reiksme', ...
-    'Maksimali reiksme'}, 'Location', 'best');
+       'Maksimali reiksme'}, 'Location', 'best');
 grid on;
 xlim([t(1) t(end)]);
-ylim([min(U1, 0) - 0.5, max(Uv) + 0.5]);
+ylim([U1 - 1, max(Uv) + 0.5]);
